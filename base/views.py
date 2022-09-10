@@ -12,4 +12,11 @@ class TaskList(ListView):
 
 class TaskDetail(DetailView):
     model = Task
-    template_name: str = 'base/detail.html'
+    template_name = 'base/detail.html'
+
+class TaskCreate(CreateView):
+    model = Task
+    fields = '__all__'
+    context_object_name = 'tasks'
+    template_name = 'base/create.html'
+    success_url = reverse_lazy('task-list')
