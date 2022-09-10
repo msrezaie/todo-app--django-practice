@@ -1,0 +1,20 @@
+<h2>Tasks</h2>
+
+<table>
+    <tr>
+        <th>Task Name</th>
+        <th>Status</th>
+        <td></td>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        <td>{{task.title}}</td>
+        <td>{{task.complete}}</td>
+        <td><a href='{% url 'task-detail' task.id %}'>View</a></td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td>No entries in the db!</td>
+    </tr>
+    {% endfor %}
+</table>
