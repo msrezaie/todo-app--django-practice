@@ -2,7 +2,7 @@
 
 A web application built with Python web framework Django intended for creation and management of simple tasks by different users
 
-I have created this web app for my own practice purpose and to learn django web framework.
+I have created this web app for my own practice purposes and to learn the django web framework.
 The web app is implemented with django's class based views.
 
 ## Access
