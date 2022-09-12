@@ -11,5 +11,5 @@ The web app is currently hosted using the PythonAnywhere service which can be ac
 http://msrezaie.pythonanywhere.com/
 
 ### Credentials
-Username: guest
+Username: guest <br />
 Password: guest
