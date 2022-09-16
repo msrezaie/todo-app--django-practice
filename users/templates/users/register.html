@@ -1,0 +1,9 @@
+<h2>User Registration Page</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Register">
+</form>
+
+<p>Already registered? <a href="{% url 'task-login' %}">Login</a></p>
