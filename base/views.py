@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -14,7 +13,6 @@ class TaskList(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Task.objects.filter(user=self.request.user)
     
-
 class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
     template_name = 'base/detail.html'
@@ -22,9 +20,12 @@ class TaskDetail(LoginRequiredMixin, DetailView):
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     fields = ['title', 'description', 'complete']
-    context_object_name = 'tasks'
     template_name = 'base/create.html'
     success_url = reverse_lazy('task-list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
