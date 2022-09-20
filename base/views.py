@@ -10,8 +10,15 @@ class TaskList(LoginRequiredMixin, ListView):
     context_object_name = 'tasks'
     template_name = 'base/list.html'
 
-    def get_queryset(self):
-        return Task.objects.filter(user=self.request.user)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tasks'] = context['tasks'].filter(user=self.request.user)
+        context['count'] = context['tasks'].filter(complete=False).count()
+        
+        search_item = self.request.GET.get('search-area') or ''
+        if search_item:
+            context['tasks'] = context['tasks'].filter(title__icontains=search_item)
+        return context
     
 class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
